@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gebäudeplan Rosenstraße 27 – Schemaplan</title>
+<style>
+:root{--bg:#0e1319;--panel:#161d26;--ink:#e8eef4;--mute:#92a0ae;--line:#d7e0e8;--acc:#4cc2ff;--warn:#ffb454}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif}
+header{padding:14px 20px;border-bottom:1px solid #243041}
+h1{margin:0;font-size:18px;font-weight:600}
+header p{margin:2px 0 0;color:var(--mute);font-size:12.5px}
+main{display:grid;grid-template-columns:minmax(0,1fr) 330px}
+@media(max-width:900px){main{grid-template-columns:1fr}}
+.stage{padding:12px 16px}
+.bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:8px}
+.tab{background:var(--panel);color:var(--ink);border:1px solid #2b394b;border-radius:8px;padding:6px 14px;cursor:pointer;font:inherit}
+.tab[aria-selected=true]{border-color:var(--acc);color:var(--acc);box-shadow:0 0 0 1px var(--acc) inset}
+.sp{flex:1}
+label.tg{color:var(--mute);font-size:13px;display:flex;gap:5px;align-items:center;cursor:pointer}
+svg{width:100%;height:auto;max-height:82vh;background:#0b1016;border:1px solid #1f2a38;border-radius:10px;display:block}
+aside{border-left:1px solid #243041;padding:14px 16px;background:var(--panel);min-height:300px}
+@media(max-width:900px){aside{border-left:0;border-top:1px solid #243041}}
+aside h2{margin:0 0 4px;font-size:16px}
+aside .dim{color:var(--acc);font-size:13px;margin-bottom:8px}
+aside p{margin:6px 0;font-size:13px}
+aside .meta{color:var(--mute);font-size:12px}
+.chip{display:inline-block;padding:1px 8px;border-radius:99px;font-size:11.5px;border:1px solid}
+.c-h{color:#6ee7a0;border-color:#2f7a52}.c-m{color:var(--warn);border-color:#8a6420}.c-l{color:#ff7b7b;border-color:#8a3a3a}
+.legend{margin-top:14px;border-top:1px solid #243041;padding-top:10px;font-size:12px;color:var(--mute)}
+.legend div{margin:3px 0}
+.room{cursor:pointer;transition:filter .12s}
+.room:hover{filter:brightness(1.35)}
+.rname{font:600 .24px system-ui,sans-serif;fill:#eaf1f7;text-anchor:middle;pointer-events:none}
+.rdim{font:.17px system-ui,sans-serif;fill:#9fb0c0;text-anchor:middle;pointer-events:none}
+.note{font:.2px system-ui,sans-serif;fill:#7f90a1;text-anchor:middle}
+</style>
+</head>
+<body>
+<header>
+  <h1>Gebäudeplan · Rosenstraße 27, Köfering</h1>
+  <p>Schemaplan aus Fotos abgeleitet – <b>nicht vermessen</b>. Maße „ca.“ geschätzt (± 0,5 m). Raum anklicken für Details.</p>
+</header>
+<main>
+  <section class="stage">
+    <div class="bar" role="tablist" id="tabs"></div>
+    <div class="bar">
+      <label class="tg"><input type="checkbox" id="tgFurn"> Möbel</label>
+      <label class="tg"><input type="checkbox" id="tgDim" checked> Maße</label>
+      <span class="sp"></span>
+    </div>
+    <svg id="svg" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Grundriss"></svg>
+  </section>
+  <aside id="panel"></aside>
+</main>
+
+<script>
+/* ---------- Modell ----------
+   Modellkoordinaten in Metern: x = 0 ist Ostseite, y = 0 ist Nordseite (Haustür-Seite).
+   Darstellung: Norden oben, Osten rechts  ->  svg = (W - x, y).
+   Alle Werte geschätzt. conf: h = Raum+Lage sicher, m = Lage plausibel, l = Platzhalter/unklar. */
+const W = 7.2, D = 9.4;
+const P = (x, y) => [W - x, y];
+const rect = (x1, y1, x2, y2) => [[x1,y1],[x2,y1],[x2,y2],[x1,y2]];
+
+const LEVELS = {
+EG: { title: 'Erdgeschoss', cls: 'EG',
+  rooms: [
+    { id:'kueche', name:'Küche', cls:'k', pts:rect(0,0,2.4,3.4), label:[1.2,1.7], dim:'ca. 2,4 × 3,4 m', conf:'h', fotos:'B2-6, B2-7',
+      info:'Schmal, Fenster nach Norden. Zeile mit Herd, Backofen, Kühlschrank, Spüle, Geschirrspüler; Rollwagen-Insel in der Mitte. Tür zum Essbereich. Vinylboden dunkel.' },
+    { id:'wz', name:'Wohnzimmer\n+ Essbereich', cls:'w', pts:[[0,3.4],[2.4,3.4],[2.4,5.2],[7.2,5.2],[7.2,9.4],[0,9.4]], label:[3.7,7.3], dim:'ca. 7,2 × 4,2 m + Essbereich 2,4 × 1,8 m', conf:'h', fotos:'B2-3, B2-4, B2-5',
+      info:'Fensterfront nach Süden (3-teilig + Terrassentür), Heizkörper, viele Pflanzen. Sofa-Ecke, TV-Wand, Foto-Wand (dunkelgrau). Essbereich in Nische mit grüner Wand und Fenster zur Seitenwand. Parkett. Zugang von der Diele durch Tür in der dunkelgrauen Wand.' },
+    { id:'vorflur', name:'Vorflur', cls:'f', pts:rect(2.4,0,4.6,2.2), label:[3.5,1.1], dim:'ca. 2,2 × 2,2 m', conf:'m', fotos:'B2-8, B2-11',
+      info:'Windfang hinter der Haustür (weiß, Schlitz-Glas). Schuhe, Teppich. Glastür trennt zur Diele. Parkett.' },
+    { id:'wc', name:'Gäste-WC', cls:'n', pts:rect(4.6,0,6.4,1.1), label:[5.5,0.55], dim:'ca. 1,8 × 1,1 m', conf:'m', fotos:'B2-9',
+      info:'Tapete geblümt, graue Fliesen, Heizkörper, Fenster mit Vorhang. Türöffnung ohne Türblatt sichtbar.' },
+    { id:'wasch', name:'Wasch-\nraum', cls:'n', pts:rect(4.6,1.1,6.0,2.2), label:[5.3,1.65], dim:'ca. 1,4 × 1,1 m', conf:'l', fotos:'B2-10',
+      info:'Waschbecken mit Spiegel, gleiche Fliesen/Tapete wie das WC. Ob eigener Raum oder Teil des WC, ist unklar (zwei Türöffnungen).' },
+    { id:'unk_eg', name:'?', cls:'u', pts:[[6.0,1.1],[6.4,1.1],[6.4,0],[7.2,0],[7.2,2.2],[6.0,2.2]], label:[6.6,1.1], dim:'', conf:'l', fotos:'–',
+      info:'Platzhalter: restliche Fläche neben WC/Waschraum, nicht fotografiert (Wand, Schacht oder Abstellfläche?).' },
+    { id:'diele', name:'Diele', cls:'f', pts:rect(2.4,2.2,5.7,5.2), label:[3.3,2.75], dim:'ca. 3,3 × 3,0 m', conf:'h', fotos:'B2-1, B2-2, B2-8',
+      info:'Verteiler: Haustür-Seite, Wohnzimmer, Wendeltreppe. Kiefern-Garderobenschrank an der Küchen-Wand, Wendeltreppe an der Westseite. Parkett.' },
+    { id:'nische', name:'Garderobe-\nNische', cls:'f', pts:rect(5.7,2.2,7.2,5.2), label:[6.45,3.7], dim:'ca. 1,5 × 3,0 m', conf:'l', fotos:'B2-2, B2-8',
+      info:'Hinter der Treppe, durch Holz-Lamellen als Raumteiler abgetrennt. Garderobe, Kommode, Getränkekisten, Jacken. Größe und Abgrenzung geschätzt.' }
+  ],
+  doors: [
+    { x:3.0,y:0,w:0.9,o:'h',t:'entry',sw:1,hinge:'a', n:'Haustür' },
+    { x:3.0,y:2.2,w:0.9,o:'h',t:'door',sw:1,hinge:'b', n:'Glastür' },
+    { x:3.0,y:5.2,w:0.9,o:'h',t:'door',sw:1,hinge:'a', n:'Tür Wohnzimmer' },
+    { x:1.5,y:3.4,w:0.8,o:'h',t:'door',sw:1,hinge:'a', n:'Küchentür' },
+    { x:4.6,y:0.15,w:0.8,o:'v',t:'open', n:'WC' },
+    { x:4.6,y:1.25,w:0.8,o:'v',t:'door',sw:1,hinge:'a', n:'Waschraum' },
+    { x:5.7,y:2.6,w:2.0,o:'v',t:'open', n:'Lamellen' }
+  ],
+  wins: [
+    { x:0.7,y:0,w:1.0,o:'h' }, { x:5.0,y:0,w:0.7,o:'h' },
+    { x:0.9,y:9.4,w:3.4,o:'h' }, { x:4.6,y:9.4,w:1.0,o:'h',t:'tdoor' },
+    { x:0,y:3.8,w:1.1,o:'v' }
+  ],
+  stairs: [ { cx:4.85, cy:3.6, r:0.85, kind:'up', label:'Treppe ↑' } ],
+  furn: [
+    [2.4,3.1,0.6,1.4,'Schrank'], [0.1,5.8,0.9,2.8,'Sofa'], [1.0,5.8,1.6,0.9,''], [1.5,7.3,1.2,0.9,'Tisch'],
+    [6.7,6.0,0.4,2.6,'TV'], [0.7,3.8,1.0,0.9,'Esstisch'], [0,0.2,0.6,3.0,'Zeile'], [1.9,0.2,0.5,2.2,'Zeile'], [1.0,1.2,0.6,1.2,'Insel']
+  ]
+},
+OG: { title: 'Obergeschoss', cls: 'OG',
+  rooms: [
+    { id:'zimmer2', name:'Zimmer 2', cls:'s', pts:rect(0,0,4.0,4.6), label:[2.0,2.3], dim:'ca. 4,0 × 4,6 m', conf:'m', fotos:'B1-14, B1-15, B1-16',
+      info:'Doppelbett, Schreibtisch, Kleiderschrank, Fensterbank mit Pflanzen, Heizkörper. Fenster nach Norden (Angabe). Tür öffnet direkt zum Treppenbereich.' },
+    { id:'bad', name:'Bad', cls:'n', pts:rect(4.0,0,7.2,2.8), label:[5.6,1.4], dim:'ca. 3,0 × 2,8 m', conf:'m', fotos:'B1-18, B1-19',
+      info:'Wanne, Duschkabine (Milchglas), WC, Waschbecken mit Spiegelschrank, beige Fliesen. Kein Fenster sichtbar. Tür direkt am Treppenbereich. Liegt über dem Gäste-WC (Leitungsschacht plausibel).' },
+    { id:'schlaf', name:'Schlafzimmer', cls:'s', pts:rect(0,4.6,4.4,9.4), label:[2.2,7.0], dim:'ca. 4,4 × 4,8 m', conf:'h', fotos:'B1-11, B1-12',
+      info:'Doppelbett, 5-türiger Schrank, Fenster + Balkontür nach Süden (Balkon zum Vorgarten/Straße), Heizkörper, Rollladen. Laminat grau.' },
+    { id:'flur', name:'Flur', cls:'f', pts:[[4.0,2.8],[5.7,2.8],[5.7,6.6],[4.4,6.6],[4.4,4.6],[4.0,4.6]], label:[5.05,5.6], dim:'ca. 1,3 m breit', conf:'m', fotos:'B1-7, B1-8, B1-13, B1-17',
+      info:'Verteiler um die Wendeltreppe. Laminat grau, Wandleuchte, Bilder. Führt zu Schlafzimmer, Zimmer 2, Bad, Wäschezimmer, Schranknische.' },
+    { id:'unk_og', name:'?', cls:'u', pts:rect(5.7,2.8,7.2,5.0), label:[6.45,3.9], dim:'', conf:'l', fotos:'–',
+      info:'Platzhalter: nicht fotografiert (Schacht, Abstellraum oder Teil der Nische?).' },
+    { id:'nischeog', name:'Nische', cls:'f', pts:rect(5.7,5.0,7.2,6.6), label:[6.45,5.8], dim:'ca. 1,5 × 1,6 m', conf:'m', fotos:'B1-10',
+      info:'Stichgang neben dem Wäschezimmer mit Kiefernschrank (Klopapier-Vorrat oben).' },
+    { id:'wasche', name:'Wäsche-\nzimmer', cls:'n', pts:rect(4.4,6.6,7.2,9.4), label:[5.8,8.0], dim:'ca. 2,8 × 2,8 m', conf:'m', fotos:'B1-8, B1-9, B1-10',
+      info:'Wäscheständer, Bügelstation, Regal, Koffer, Wäschekorb, Heizkörper, Fenster (vermutlich nach Süden). Laminat grau.' }
+  ],
+  doors: [
+    { x:4.0,y:3.0,w:0.8,o:'v',t:'door',sw:-1,hinge:'a', n:'Tür Zimmer 2' },
+    { x:4.5,y:2.8,w:0.8,o:'h',t:'door',sw:-1,hinge:'a', n:'Tür Bad' },
+    { x:4.4,y:5.2,w:0.9,o:'v',t:'door',sw:-1,hinge:'a', n:'Tür Schlafzimmer' },
+    { x:4.7,y:6.6,w:0.8,o:'h',t:'open', n:'Wäschezimmer' },
+    { x:5.7,y:5.2,w:1.2,o:'v',t:'open', n:'Nische' }
+  ],
+  wins: [
+    { x:0.6,y:9.4,w:1.8,o:'h' }, { x:2.9,y:9.4,w:0.9,o:'h',t:'tdoor' },
+    { x:5.2,y:9.4,w:1.2,o:'h' }, { x:1.0,y:0,w:1.8,o:'h' }
+  ],
+  stairs: [ { cx:4.85, cy:3.6, r:0.85, kind:'both', label:'Treppe ↑↓' } ],
+  furn: [ [1.2,6.4,1.9,2.1,'Bett'], [0,4.7,2.6,0.6,'Schrank'], [0.6,1.2,1.5,2.0,'Bett'], [4.1,0.1,1.7,0.8,'Wanne'] ],
+  balkon: { x1:0, x2:4.4, y:9.4, d:1.2 }
+},
+DG: { title: 'Dachgeschoss', cls: 'DG',
+  rooms: [
+    { id:'podest', name:'Podest', cls:'f', pts:rect(3.6,2.2,7.2,4.8), label:[6.3,4.2], dim:'ca. 3,6 × 2,6 m', conf:'m', fotos:'B1-4, B1-5, B1-6',
+      info:'Treppenkopf mit Geländer (Stäbe, schwarzer Handlauf). Vinyl/Linoleum beige. Eine Tür zum Studio, eine weitere Tür geradeaus (Foto B1-4).' },
+    { id:'studio', name:'Studio', cls:'s', pts:rect(0,4.8,7.2,9.4), label:[3.6,7.2], dim:'ca. 7 × 4–5 m, Lage schematisch', conf:'l', fotos:'B1-1, B1-2, B1-3',
+      info:'Langer, schmaler Raum unter beidseitiger Dachschräge, Holzverkleidung, Deckenbalken, 2+ Dachfenster. Zonen: Schreibtisch + Ultrawide + Neon-Wand, Sessel/Sofa/Kallax, Esstisch, hinten Gym + Kleiderschrank, weißes Tuch als Trennung. Position und Ausrichtung im Grundriss sind geraten.' },
+    { id:'dgraum', name:'weiterer\nRaum?', cls:'u', pts:rect(3.6,0,7.2,2.2), label:[5.4,1.1], dim:'', conf:'l', fotos:'B1-4',
+      info:'Platzhalter für die Tür geradeaus vom Podest. Nicht fotografiert.' },
+    { id:'dgunk', name:'unbekannt', cls:'u', pts:rect(0,0,3.6,4.8), label:[1.8,2.4], dim:'', conf:'l', fotos:'–',
+      info:'Fläche über Zimmer 2 – nicht fotografiert.' }
+  ],
+  doors: [ { x:5.5,y:4.8,w:0.8,o:'h',t:'door',sw:1,hinge:'a', n:'Tür Studio' }, { x:4.6,y:2.2,w:0.8,o:'h',t:'door',sw:-1,hinge:'a', n:'Tür ?' } ],
+  wins: [], stairs: [ { cx:4.85, cy:3.6, r:0.85, kind:'open', label:'Treppenloch' } ], furn: []
+},
+KG: { title: 'Keller', cls: 'KG',
+  rooms: [
+    { id:'heiz', name:'Heizungs-\nraum', cls:'u', pts:rect(0,0,3.2,4.0), label:[1.6,2.0], dim:'Maße unbekannt', conf:'l', fotos:'–', info:'Laut Angabe vorhanden. Keine Fotos, Position und Größe sind Platzhalter.' },
+    { id:'abst', name:'Abstellraum', cls:'u', pts:rect(3.2,0,7.2,4.0), label:[5.2,2.0], dim:'Maße unbekannt', conf:'l', fotos:'–', info:'Laut Angabe vorhanden. Keine Fotos, Position und Größe sind Platzhalter.' },
+    { id:'kunk', name:'weitere Fläche?', cls:'u', pts:rect(0,4.0,7.2,9.4), label:[3.6,6.7], dim:'', conf:'l', fotos:'–', info:'Unbekannt, ob der Keller die ganze Grundfläche belegt und ob weitere Räume existieren. Zugang/Treppe vom EG ebenfalls unbekannt.' }
+  ],
+  doors: [], wins: [], stairs: [], furn: []
+},
+SCHNITT: { title: 'Schnitt Treppe' }
+};
+
+/* ---------- Rendering ---------- */
+const NS='http://www.w3.org/2000/svg';
+const svg=document.getElementById('svg'), panel=document.getElementById('panel');
+const FILL={ k:'#4a3a2a', w:'#274456', f:'#3a3828', n:'#2a4545', s:'#34345a', u:'#1a222c' };
+function el(tag,at,parent){const e=document.createElementNS(NS,tag);for(const k in at)e.setAttribute(k,at[k]);if(parent)parent.appendChild(e);return e;}
+const pts=a=>a.map(p=>P(p[0],p[1]).join(',')).join(' ');
+const CONF={h:'Lage sicher',m:'Lage plausibel',l:'Platzhalter / unklar'};
+let current='EG', selected=null;
+
+function tabs(){
+  const t=document.getElementById('tabs'); t.innerHTML='';
+  Object.keys(LEVELS).forEach(k=>{
+    const b=document.createElement('button'); b.className='tab'; b.textContent=k==='SCHNITT'?'Schnitt':k+' · '+LEVELS[k].title;
+    b.setAttribute('role','tab'); b.setAttribute('aria-selected',k===current);
+    b.onclick=()=>{current=k;selected=null;draw();}; t.appendChild(b);
+  });
+}
+
+function wall(o,x,y,w){ // Rechteck im Modell -> svg (min/max)
+  const a=P(x,y), b=P(o==='h'?x+w:x, o==='h'?y:y+w);
+  return {x:Math.min(a[0],b[0]), y:Math.min(a[1],b[1]), w:Math.abs(a[0]-b[0]), h:Math.abs(a[1]-b[1])};
+}
+
+function drawDoor(d,g){
+  const t=0.17, r=wall(d.o,d.x,d.y,d.w);
+  if(d.o==='h'){r.y-=t/2;r.h=t;}else{r.x-=t/2;r.w=t;}
+  el('rect',{x:r.x,y:r.y,width:r.w,height:r.h,fill:'#0b1016'},g);
+  if(d.t==='open'){
+    const a=d.o==='h'?[[d.x,d.y],[d.x+d.w,d.y]]:[[d.x,d.y],[d.x,d.y+d.w]];
+    el('polyline',{points:pts(a),stroke:'#7f90a1','stroke-width':.04,'stroke-dasharray':'.1 .08',fill:'none'},g); return;
+  }
+  const ha=d.hinge==='a';
+  let H,u,v;
+  if(d.o==='h'){H=[ha?d.x:d.x+d.w,d.y];u=[ha?1:-1,0];v=[0,d.sw];}
+  else{H=[d.x,ha?d.y:d.y+d.w];u=[0,ha?1:-1];v=[d.sw,0];}
+  const arc=[];for(let i=0;i<=10;i++){const a=i/10*Math.PI/2;arc.push([H[0]+d.w*(Math.cos(a)*u[0]+Math.sin(a)*v[0]),H[1]+d.w*(Math.cos(a)*u[1]+Math.sin(a)*v[1])]);}
+  const col=d.t==='entry'?'#4cc2ff':'#c9d4de';
+  el('polyline',{points:pts(arc),fill:'none',stroke:col,'stroke-width':.025,opacity:.7},g);
+  el('polyline',{points:pts([H,arc[10]]),fill:'none',stroke:col,'stroke-width':d.t==='entry'?.07:.045},g);
+}
+function drawWin(w,g){
+  const t=w.t==='tdoor'?.2:.13, r=wall(w.o,w.x,w.y,w.w);
+  if(w.o==='h'){r.y-=t/2;r.h=t;}else{r.x-=t/2;r.w=t;}
+  el('rect',{x:r.x,y:r.y,width:r.w,height:r.h,fill:w.t==='tdoor'?'#2b7fa8':'#0d2a3a',stroke:'#4cc2ff','stroke-width':.03},g);
+}
+function drawStair(s,g){
+  const c=P(s.cx,s.cy);
+  el('circle',{cx:c[0],cy:c[1],r:s.r,fill:s.kind==='open'?'none':'#3b342a',stroke:'#c9a56a','stroke-width':.05,'stroke-dasharray':s.kind==='open'?'.15 .1':'0'},g);
+  for(let i=0;i<14;i++){const a=i/14*Math.PI*2;el('line',{x1:c[0],y1:c[1],x2:c[0]+s.r*Math.cos(a),y2:c[1]+s.r*Math.sin(a),stroke:'#c9a56a','stroke-width':.025,opacity:.8},g);}
+  el('circle',{cx:c[0],cy:c[1],r:.11,fill:'#e8d4a8'},g);
+  const tx=el('text',{x:c[0],y:c[1]+s.r+.27,class:'rdim'},g); tx.textContent=s.label;
+}
+
+function draw(){
+  tabs(); svg.innerHTML=''; panel.innerHTML='';
+  if(current==='SCHNITT'){drawSection();showIntro();return;}
+  const L=LEVELS[current];
+  svg.setAttribute('viewBox',`-1.3 -1.1 ${W+2.6} ${D+2.4}`);
+  const defs=el('defs',{},svg);
+  const pat=el('pattern',{id:'hatch',width:.28,height:.28,patternUnits:'userSpaceOnUse',patternTransform:'rotate(45)'},defs);
+  el('line',{x1:0,y1:0,x2:0,y2:.28,stroke:'#4a5866','stroke-width':.05},pat);
+  const gR=el('g',{},svg), gF=el('g',{},svg), gS=el('g',{},svg), gD=el('g',{},svg), gT=el('g',{},svg);
+
+  // Außenhülle
+  el('polygon',{points:pts(rect(0,0,W,D)),fill:'none',stroke:'#6f7f90','stroke-width':.04,'stroke-dasharray':'.2 .12'},gR);
+
+  L.rooms.forEach(r=>{
+    const isSel=selected===r.id;
+    const gg=el('g',{class:'room'},gR);
+    el('polygon',{points:pts(r.pts),fill:FILL[r.cls]||FILL.u,stroke:isSel?'#4cc2ff':'#d7e0e8','stroke-width':isSel?.1:.075,'stroke-linejoin':'round','stroke-dasharray':r.conf==='l'?'.22 .12':'0'},gg);
+    if(r.conf==='l'||r.cls==='u') el('polygon',{points:pts(r.pts),fill:'url(#hatch)',stroke:'none',opacity:.8},gg);
+    gg.addEventListener('click',()=>{selected=r.id;draw();});
+    const lp=P(r.label[0],r.label[1]); const lines=r.name.split('\n');
+    lines.forEach((ln,i)=>{const t=el('text',{x:lp[0],y:lp[1]+i*.27-(lines.length-1)*.13,class:'rname'},gT);t.textContent=ln;});
+    if(r.dim && document.getElementById('tgDim').checked){
+      const t=el('text',{x:lp[0],y:lp[1]+lines.length*.27-.05,class:'rdim'},gT);
+      const parts=r.dim.split(' + ');t.textContent=parts[0];
+      if(parts[1]){const t2=el('text',{x:lp[0],y:lp[1]+lines.length*.27+.17,class:'rdim'},gT);t2.textContent='+ '+parts[1];}
+    }
+  });
+
+  if(document.getElementById('tgFurn').checked){
+    L.furn.forEach(f=>{const a=P(f[0],f[1]),b=P(f[0]+f[2],f[1]+f[3]);
+      el('rect',{x:Math.min(a[0],b[0]),y:Math.min(a[1],b[1]),width:Math.abs(a[0]-b[0]),height:Math.abs(a[1]-b[1]),fill:'#ffffff14',stroke:'#8a99a8','stroke-width':.025,rx:.04},gF);
+      if(f[4]){const t=el('text',{x:(a[0]+b[0])/2,y:(a[1]+b[1])/2+.06,class:'rdim'},gF);t.textContent=f[4];}
+    });
+  }
+  if(L.balkon){const b=L.balkon,a=P(b.x1,b.y),c=P(b.x2,b.y+b.d);
+    el('rect',{x:Math.min(a[0],c[0]),y:a[1],width:Math.abs(a[0]-c[0]),height:b.d,fill:'#1d2a36',stroke:'#7f90a1','stroke-width':.04,'stroke-dasharray':'.12 .08'},gF);
+    const t=el('text',{x:(a[0]+c[0])/2,y:a[1]+b.d/2+.07,class:'rdim'},gF);t.textContent='Balkon (Süden)';}
+  L.stairs.forEach(s=>drawStair(s,gS));
+  L.doors.forEach(d=>drawDoor(d,gD)); L.wins.forEach(w=>drawWin(w,gD));
+
+  // Orientierung
+  const n1=el('text',{x:W/2,y:-.55,class:'note'},gT); n1.textContent='▲ NORDEN · Zugang Haustür (Annahme)';
+  const n2=el('text',{x:W/2,y:D+(L.balkon?1.75:.7),class:'note'},gT); n2.textContent='▼ SÜDEN · Vorgarten → Rosenstraße';
+  if(document.getElementById('tgDim').checked){
+    el('line',{x1:0,y1:D+.35+(L.balkon?1.1:0)-.1,x2:W,y2:D+.35+(L.balkon?1.1:0)-.1,stroke:'#566474','stroke-width':.025},gT);
+    const t=el('text',{x:W/2,y:D+.35+(L.balkon?1.1:0)+.15,class:'rdim'},gT);t.textContent='ca. '+W.toFixed(1).replace('.',',')+' m';
+    el('line',{x1:W+.35,y1:0,x2:W+.35,y2:D,stroke:'#566474','stroke-width':.025},gT);
+    const t2=el('text',{x:W+.55,y:D/2,class:'rdim',transform:`rotate(90 ${W+.55} ${D/2})`},gT);t2.textContent='ca. '+D.toFixed(1).replace('.',',')+' m';
+  }
+  showPanel(L);
+}
+
+function showIntro(){
+  panel.innerHTML=`<h2>Treppe & Geschosse</h2><p>Wendeltreppe mit Holzstufen, Putz-Mittelsäule, schwarzem Handlauf. Sie verbindet EG – OG – DG. Ob und wie der Keller (Heizungsraum, Abstellraum) angebunden ist, ist unbekannt.</p>
+  <p class="meta">Höhen und Stufenzahl geschätzt (Geschosshöhe ca. 2,6 m, ca. 14 Stufen je Lauf). Schnitt nur zur Orientierung.</p>`+legend();
+}
+function legend(){return `<div class="legend"><div><span class="chip c-h">sicher</span> Raum und Lage aus Fotos klar</div><div><span class="chip c-m">plausibel</span> Lage abgeleitet</div><div><span class="chip c-l">unklar</span> Platzhalter (schraffiert/gestrichelt)</div><div>Türen: Viertelkreis = Aufschlag · gestrichelt = Öffnung ohne Blatt · blau = Haustür</div><div>Fenster: blau · Terrassen-/Balkontür: dicker blau</div><div>Fotos: B1-n = erster Batch (DG/OG), B2-n = zweiter Batch (EG)</div></div>`;}
+function showPanel(L){
+  const r=L.rooms.find(x=>x.id===selected);
+  if(!r){panel.innerHTML=`<h2>${L.title}</h2><p>Raum anklicken für Details.</p>`+legend();return;}
+  panel.innerHTML=`<h2>${r.name.replace('\n',' ')}</h2><div class="dim">${r.dim||'Maße unbekannt'}</div>
+  <p><span class="chip c-${r.conf}">${CONF[r.conf]}</span></p><p>${r.info}</p><p class="meta">Fotos: ${r.fotos}</p>`+legend();
+}
+
+function drawSection(){
+  const H=9.2; svg.setAttribute('viewBox',`-1.3 -.8 ${W+2.6} ${H+3.9}`);
+  const Yz=y=>H-y; const g=el('g',{},svg);
+  const defs=el('defs',{},svg); const pat=el('pattern',{id:'hatch2',width:.28,height:.28,patternUnits:'userSpaceOnUse',patternTransform:'rotate(45)'},defs);
+  el('line',{x1:0,y1:0,x2:0,y2:.28,stroke:'#4a5866','stroke-width':.05},pat);
+  // Keller (Platzhalter)
+  el('rect',{x:0,y:Yz(0),width:W,height:2.4,fill:'url(#hatch2)',stroke:'#7f90a1','stroke-width':.06,'stroke-dasharray':'.2 .12'},g);
+  txt(g,W/2,Yz(0)+1.3,'Keller: Heizungsraum, Abstellraum (keine Fotos)','note');
+  // EG, OG
+  [[0,2.5,'Erdgeschoss  ±0,00'],[2.7,5.2,'Obergeschoss  ca. +2,7']].forEach(a=>{
+    el('rect',{x:0,y:Yz(a[1]),width:W,height:a[1]-a[0],fill:'#182430',stroke:'#d7e0e8','stroke-width':.07},g);
+    txt(g,.3,Yz(a[0])-.2,a[2],'rdim','start');
+  });
+  // Dachgeschoss
+  el('polygon',{points:`0,${Yz(5.4)} ${W},${Yz(5.4)} ${W},${Yz(6.4)} ${W/2},${Yz(8.6)} 0,${Yz(6.4)}`,fill:'#2a2438',stroke:'#d7e0e8','stroke-width':.07},g);
+  txt(g,.3,Yz(5.4)-.2,'Dachgeschoss  ca. +5,4','rdim','start');
+  // Wendeltreppe
+  const cx=W-4.85, r=.85;
+  el('rect',{x:cx-.1,y:Yz(5.7),width:.2,height:5.7,fill:'#e8d4a8'},g);
+  for(let i=0;i<30;i++){const y=i*0.19+.05, side=(i%2?1:-1);
+    el('rect',{x:side>0?cx:cx-r,y:Yz(y)-.04,width:r,height:.06,fill:'#c9a56a'},g);}
+  txt(g,cx,Yz(5.7)-.2,'Wendeltreppe (schematisch)','note');
+  txt(g,W/2,-.4,'Schnitt durch die Treppe, Blick von Norden · nicht maßstäblich','note');
+}
+function txt(p,x,y,s,cls,anchor){const t=el('text',{x,y,class:cls||'rdim'},p);if(anchor)t.setAttribute('style','text-anchor:'+anchor);t.textContent=s;return t;}
+
+document.getElementById('tgFurn').onchange=draw;
+document.getElementById('tgDim').onchange=draw;
+draw();
+</script>
+</body>
+</html>

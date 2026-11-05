@@ -1,76 +1,62 @@
-# Gebäudeplan – Aufnahme (Fotoanalyse)
+# Aufnahme: Fotoanalyse
 
-Status: **Batch 1 von n** (20 Fotos ausgewertet). Alles hier ist aus Fotos abgeleitet, nicht gemessen. Unsicheres ist mit `?` markiert.
+Objekt: Rosenstraße 27, Köfering. Alles hier ist aus Fotos und Angaben abgeleitet, **nicht gemessen**. Unsicheres ist mit `?` markiert.
 
-## Phase 1 – Bestandsaufnahme
+Stand: 2 Foto-Batches (31 Fotos) + Angaben des Eigentümers.
 
-### Task 1.1 – Geschosse & Erschließung
+## Phase 1: Fakten
 
-| Ebene | Inhalt | Sicherheit |
+### Task 1.1: Ausrichtung (Angaben des Eigentümers)
+- Balkon (OG) zeigt ca. **Süden**: dort Vorgarten, dann Straße (Rosenstraße).
+- Fenster von Zimmer 2 zeigt ca. **Norden**.
+- Folge: Wohnzimmer-Fensterfront und Schlafzimmer liegen im Süden. Haustür, Küche, Gäste-WC und Zimmer 2 liegen im Norden. Die Haustür liegt damit auf der Nordseite (Annahme, bitte bestätigen).
+
+### Task 1.2: Geschosse
+
+| Ebene | Inhalt | Quelle |
 |---|---|---|
-| Dachgeschoss (DG) | Ein langer, schmaler Raum unter Dachschräge, Holzverkleidung, Podest am Treppenkopf | hoch |
-| Obergeschoss (OG)? | Flur, Schlafzimmer, Zimmer 2, Bad, Wäsche-/Bügelzimmer | mittel (Etagenname unklar) |
-| Darunter? | Wendeltreppe läuft unterhalb des OG-Flurs weiter (Foto 20 zeigt grauen Boden unten) | niedrig |
+| Keller | Heizungsraum, Abstellraum | nur Angabe, keine Fotos |
+| EG | Vorflur, Gäste-WC, Waschraum, Diele, Garderobe-Nische, Küche, Wohnzimmer + Essbereich | Batch 2 |
+| OG | Flur, Schlafzimmer, Zimmer 2, Bad, Wäschezimmer, Nische | Batch 1 |
+| DG | Podest, Studio | Batch 1 |
 
-**Erschließung:** Einläufige **Wendeltreppe** (Holzstufen, zentrale Stütze mit Putzstruktur, schwarzer Handlauf). Sie sitzt in einer Nische neben Schlafzimmer 2 / Flur. Sie verbindet OG ↔ DG und führt vermutlich weiter nach unten.
+Erschließung: eine **Wendeltreppe** (Holzstufen, Putz-Mittelsäule, schwarzer Handlauf) von EG bis DG. Verbindung zum Keller unbekannt.
 
-### Task 1.2 – Räume
+### Task 1.3: Räume
 
-**DG**
-- **Studio/Büro** (Fotos 1–3): ca. 2 Raumzonen
-  - Zone Nord/Stirnseite: Schreibtisch + Ultrawide, Neon-Lichtkunst an blauer Wand, Regalnische
-  - Zone Mitte: Sessel, Sofa, Kallax-Reihe entlang der Schräge, Esstisch mit Stuhl, Kommode
-  - Zone Süd (Bereich hinter weißem Tuch): Hantelbank, Kleiderschrank (Kiefer), Sofa/Matratze, Klimagerät
-  - Weißes Tuch/Vorhang als **mobile Trennung** (keine feste Wand)
-  - Dachfenster: mind. 2 (Schrägfenster, Stirnseite der Schräge)
-  - Tür zum Podest (rot-braunes Furnier), öffnet nach innen
-- **Podest** (Fotos 4–5): Vinyl/Linoleum beige, Geländer mit Stäben, Treppenloch; Foto Paar an der Wand
+**EG** (Batch 2, Fotos B2-1 bis B2-11)
+- **Vorflur**: hinter der Haustür (weiß, Schlitz-Glas), Glastür zur Diele. Parkett. (B2-8, B2-11)
+- **Gäste-WC** und **Waschraum**: an der Seite des Vorflurs. Graue Fliesen, geblümte Tapete. Ob zwei Räume oder einer: unklar. (B2-9, B2-10)
+- **Diele**: Verteiler. Kiefern-Garderobenschrank, Wendeltreppe, Holz-Lamellen als Raumteiler zur Garderobe-Nische. (B2-1, B2-2)
+- **Küche**: schmal, Fenster Nord, Zeile + Rollwagen-Insel, Tür zum Essbereich. (B2-6, B2-7)
+- **Wohnzimmer + Essbereich**: Fensterfront Süd (3-teilig + Terrassentür), Sofa-Ecke, TV-Wand, Essbereich in Nische mit grüner Wand und Seitenfenster. Parkett. (B2-3 bis B2-5)
 
-**OG**
-- **Flur** (Fotos 7, 8, 13): graues Holz-Laminat, Wandleuchte, Lichtschalter, Bild; führt von der Treppe zu allen Räumen
-- **Wäsche-/Bügelzimmer** (Fotos 8–10): Fenster, Heizkörper, Wäscheständer, Regal, Koffer; Eingang über Flur
-- **Nische mit Kiefernschrank** (Foto 10): kleiner Stichgang neben Wäschezimmer, Klopapier-Vorrat auf dem Schrank
-- **Schlafzimmer (Haupt)** (Fotos 11–12): Doppelbett, dunkle Akzentwand, Blumenbild, Fenster + **Balkontür** mit Rollladen, Heizkörper, 5-türiger Schrank
-- **Zimmer 2 (Gäste/Arbeiten)** (Fotos 14–16): Doppelbett Kiefer, Fenster mit Pflanzen, Heizkörper, Schreibtisch, Kleiderschrank, Tür zur Treppennische
-- **Bad** (Fotos 18–19): Wanne, Duschkabine (Milchglas), WC (schwarzer Sitz), Waschbecken + Spiegelschrank, beige Fliesen
+**OG** (Batch 1)
+- **Flur** um die Treppe, Laminat grau. (B1-7, 8, 13, 17)
+- **Schlafzimmer**: Fenster + Balkontür Süd, 5-türiger Schrank. (B1-11, 12)
+- **Zimmer 2**: Fenster Nord, Doppelbett, Schreibtisch. Tür direkt am Treppenbereich. (B1-14 bis 16)
+- **Bad**: Wanne, Dusche, WC, Waschbecken. Kein Fenster sichtbar. (B1-18, 19)
+- **Wäschezimmer**: Fenster, Heizkörper, Bügelstation. (B1-8 bis 10)
+- **Nische** mit Kiefernschrank neben dem Wäschezimmer. (B1-10)
 
-### Task 1.3 – Ausstattungsmerkmale (für Plansymbole)
-- Heizkörper: Schlafzimmer, Zimmer 2, Wäschezimmer
-- Rollladen: Schlafzimmer (Balkontür)
-- Böden: DG Teppich, Podest Linoleum, OG Laminat, Bad Fliesen
-- Türen: alle Furnier rot-braun, Zargen beige
-- Dachschräge: nur DG
+**DG** (Batch 1)
+- **Podest** mit Geländer, eine Tür zum Studio, eine weitere Tür geradeaus (Raum unbekannt). (B1-4, 5, 6)
+- **Studio**: langer, schmaler Raum unter beidseitiger Dachschräge, Holzverkleidung, 2+ Dachfenster. Zonen: Desk mit Neon-Wand, Sitzbereich, Esstisch, Gym/Schrank hinter weißem Tuch. (B1-1 bis 3)
 
-## Phase 2 – Offene Fragen (blockiert genaue Planung)
+**Keller**: Heizungsraum, Abstellraum laut Angabe.
 
-1. Läuft die Treppe unter dem OG weiter? Wie viele Geschosse hat das Haus insgesamt?
-2. Raummaße (mind. Länge/Breite pro Raum) oder soll ich schätzen?
-3. Himmelsrichtung / Straßenseite?
-4. Welche Wand grenzt woran (Nachbar, Außenwand)?
-5. Zweck des Plans: Grundriss-Skizze, Möblierung, Elektro/Smart Home, Umbau?
+## Phase 2: Offene Fragen
 
-## Phase 3 – Plan bauen (noch nicht gestartet)
+1. Haustür wirklich auf der Nordseite? Wo führt der Zugang vom Grundstück her?
+2. Raummaße, wenn möglich zumindest Gesamtbreite und -tiefe des Hauses.
+3. Haustyp: Einzelhaus, Doppelhaushälfte oder Reihenhaus (welche Wände sind Nachbarwände)?
+4. Wohin führt die zweite Tür am DG-Podest? Was liegt über Zimmer 2?
+5. Wie kommt man in den Keller (eigene Treppe, Außentreppe)? Fotos vom Keller?
+6. Gäste-WC und Waschraum: ein Raum oder zwei?
+7. Was ist in den Platzhaltern (schraffiert) im EG und OG neben WC bzw. Flur?
 
-- [ ] 3.1 Alle Batches sichten
-- [ ] 3.2 Grundriss je Geschoss (Schema, Raumbeziehungen)
-- [ ] 3.3 Treppe/Schnitt (Vertikalverbindung)
-- [ ] 3.4 Ausgabeformat festlegen (SVG/HTML-Artefakt, tldraw, Mermaid)
-- [ ] 3.5 Maße einarbeiten
+## Foto-Index
 
-## Foto-Index (Batch 1)
+**Batch 1 (DG/OG):** 1–3 Studio · 4 Tür zum Podest · 5 Podest · 6, 20 Treppe von oben · 7 Blick treppab in OG-Flur · 8 OG-Flur Richtung Wäschezimmer · 9 Wäschezimmer · 10 Nische · 11–12 Schlafzimmer · 13 OG-Flur Richtung Treppe · 14–16 Zimmer 2 · 17 Treppe durch Türrahmen · 18–19 Bad.
 
-| # | Inhalt |
-|---|---|
-| 1–3 | DG Studio (3 Blickrichtungen) |
-| 4 | DG Tür → Podest |
-| 5 | Podest, Geländer |
-| 6, 20 | Wendeltreppe von oben |
-| 7 | Blick treppab in OG-Flur |
-| 8 | OG-Flur mit Treppe, Richtung Wäschezimmer |
-| 9 | Wäsche-/Bügelzimmer |
-| 10 | Schranknische |
-| 11–12 | Schlafzimmer |
-| 13 | OG-Flur (Richtung Treppe) |
-| 14–16 | Zimmer 2 |
-| 17 | Treppe durch Türrahmen |
-| 18–19 | Bad |
+**Batch 2 (EG):** 1 Diele Richtung Wohnzimmer · 2 Diele mit Treppe und Lamellen · 3 Wohnzimmer Fensterfront · 4 Wohnzimmer Blick zur Diele · 5 Wohnzimmer Foto-Wand · 6 Küche vom Wohnzimmer aus · 7 Küche Richtung Tür · 8 Diele Richtung Haustür · 9 Gäste-WC · 10 Waschraum · 11 Vorflur Richtung Diele.
