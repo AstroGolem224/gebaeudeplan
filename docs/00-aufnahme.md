@@ -1,6 +1,6 @@
-# Aufnahme: Fotoanalyse (Version 2)
+# Aufnahme: Fotoanalyse (Version 3)
 
-Objekt: **Rosenstraße 27, Köfering**, Doppelhaushälfte. Alles ist aus 31 Fotos und Angaben abgeleitet, **nicht gemessen**.
+Objekt: **Rosenstraße 27, Köfering**, Doppelhaushälfte. Grundlage: **Handskizzen EG/OG/DG vom 06.11.** (Primärquelle für die Raumaufteilung), 31 Fotos (Details, Möblierung) und Angaben. **Nicht gemessen.**
 
 ## Phase 1: Fakten aus Angaben
 
@@ -30,37 +30,47 @@ Objekt: **Rosenstraße 27, Köfering**, Doppelhaushälfte. Alles ist aus 31 Foto
 | DG-Studio | Lage geraten | Raum unter dem First (Ost-West), Desk am Ostgiebel, Schrägen Nord/Süd | B1-1, B1-2, B1-3 |
 | Keller | ohne Treppe | Treppe läuft ins UG | Angabe |
 
+## Phase 2b: Korrekturen v2 → v3 (nach Skizzen)
+
+| Geschoss | Änderung |
+|---|---|
+| EG | Gäste-WC größer (NW-Ecke), Eingangsflur schmal (ca. 1,2 m), Küche kürzer (NO, ca. 3,1 × 3,3 m), Küchentür in der Südwand, keine Tür Diele–Küche, Diele mit Ausbuchtung nach Osten, Treppe weiter nördlich |
+| OG | Bad über die ganze Nordwest-Breite bis zum Flur; Raum 2 (Nordost) reicht bis zum Schlafzimmer, keine unbekannte Fläche mehr; Tür Raum 2 in der Westwand; „Wäschezimmer“ heißt **Kleiderzimmer**; Schrank-Nische an der Westwand südlich der Treppe |
+| DG | Studio L-förmig um das Podest (Nord + Ost); Podest mit Treppenloch im Südwesten; Mini-Abstellraum westlich; südlich vom Podest kein Raum (Dachschräge) |
+
+Abweichung: In der DG-Skizze liegt der Abstellraum **westlich** neben dem Treppenloch. In EG und OG steht die Treppe aber direkt an der Westwand. Im Plan liegt der Abstellraum deshalb **nordwestlich** vom Loch, mit der Tür gegenüber der Studiotür (passt zu Foto B1-4).
+
 ## Phase 3: Räume je Geschoss
 
-### Task 3.1: UG (keine Fotos)
-- Waschraum, Heizungsraum, Abstellraum (laut Angabe). Lage im Plan nur Platzhalter.
+### Task 3.1: UG (keine Fotos, keine Skizze)
+- Waschraum, Heizungsraum, Abstellraum (laut Angabe). Lage nur Platzhalter.
 - Wendeltreppe kommt an derselben Stelle an wie in den anderen Geschossen.
 
 ### Task 3.2: EG
-- **Vorflur:** Haustür Nord, Gäste-WC West, Schuhablage Ost, Glastür Süd zur Diele.
-- **Gäste-WC:** WC, Waschbecken mit Spiegel, Heizkörper, Vorhang über einer Ablage.
-- **Diele:** Wendeltreppe an der Westwand (Süd-Ende), Garderobe hinter Holzlamellen nördlich der Treppe, Kiefern-Garderobenschrank an der Ostwand.
-- **Küche:** Fenster Nord, Zeile Ost (Spüle, Kochfeld, Backofen, Kühlschrank), Arbeitsfläche West, Rollwagen-Insel.
-- **Wohnzimmer:** Südfront (Fenster + Terrassentür im Westen), TV West, Sofa Ost, Essbereich als Nische im Nordosten.
+- **Flur (Eingang):** Haustür Nord, Gäste-WC West, Schuhablage Ost, Glastür Süd zur Diele.
+- **Gäste-WC:** Nordwest-Ecke, WC, Waschbecken mit Spiegel, Heizkörper.
+- **Garderobe:** schmale Zone zwischen WC und Treppe, Holzlamellen.
+- **Diele:** Wendeltreppe an der Westwand, Kiefernschrank an der Ostwand, Tür Süd ins Wohnzimmer.
+- **Küche:** Nordost-Ecke, Fenster Nord, Tür Süd zum Essbereich.
+- **Wohnzimmer:** ganze Südhälfte, Essbereich als Ausbuchtung vor der Küche, Fenster Ost, Südfront mit Terrassentür.
 
 ### Task 3.3: OG
-- **Podest + Flur:** Treppe an der Westseite, Flur gerade nach Süden.
-- **Bad:** Nordwest, Wanne West, WC + Waschbecken an der Türwand, Dusche.
-- **Zimmer 2:** Nord, Bett an der Ostwand, Schreibtisch am Fenster.
-- **Nische:** westlich vom Flur, gegenüber der Schlafzimmertür, Kiefernschrank.
-- **Wäschezimmer:** Südwest, am Flurende.
-- **Schlafzimmer:** Südost, Balkon Süd.
+- **Flur:** Mitte, Treppe an der Westwand.
+- **Bad:** Nordwest, Tür Süd zum Flur.
+- **Raum 2:** Nordost, Fenster Nord, Tür West.
+- **Schrank:** Nische an der Westwand südlich der Treppe.
+- **Kleiderzimmer:** Südwest, Tür Nord.
+- **Schlafzimmer:** Südost, Tür West, Balkon Süd.
 
 ### Task 3.4: DG
-- **Podest** um das Treppenloch, Tür Ost zum Studio, Tür zum Mini-Abstellraum gegenüber.
-- **Studio:** Desk + Neon am Ostgiebel, großes Dachfenster in der Südschräge, Gym-Ecke im Nordosten hinter weißem Vorhang, Esstisch, Kallax.
+- **Podest** mit Treppenloch, Tür Ost ins Studio, Tür West in den Mini-Abstellraum.
+- **Studio:** L-Form um das Podest. Desk + Neon am Ostgiebel, Dachfenster Süd und Nord, Gym-Ecke hinter dem Vorhang.
 
 ## Phase 4: Offene Fragen
 1. Liegt das Nachbarhaus wirklich im **Westen**?
-2. Was liegt im OG **östlich vom Podest**, zwischen Zimmer 2 und Schlafzimmer? (ca. 3,5 × 2,8 m, nicht fotografiert; Fotos deuten auf eine Tür.)
-3. Hat die Küche eine zweite Tür zur Diele (Nordost-Ecke der Diele)?
-4. DG: Was liegt südlich vom Treppenloch?
-5. Gesamtmaße des Hauses (Breite × Tiefe), dann ersetze ich die Schätzungen.
+2. DG: Abstellraum westlich oder nordwestlich vom Treppenloch?
+3. Gesamtmaße des Hauses (Breite × Tiefe), dann ersetze ich die Schätzungen.
+4. UG: Skizze wie für EG/OG/DG?
 
 ## Foto-Index
 **Batch 1 (DG/OG):** 1–3 Studio · 4 Studiotür → Podest · 5 Podest · 6, 20 Treppe von oben · 7 Blick treppab in OG-Flur · 8 OG-Flur Richtung Süd · 9 Wäschezimmer · 10 aus Schlafzimmertür: Nische + Wäschezimmer · 11–12 Schlafzimmer · 13 OG-Flur Richtung Nord · 14 Bad- und Zimmer-2-Tür · 15–16 Zimmer 2 · 17 Treppe durch Türrahmen · 18–19 Bad.
