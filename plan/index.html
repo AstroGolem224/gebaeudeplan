@@ -60,7 +60,7 @@ aside .meta{color:var(--mute);font-size:12px}
    Darstellung: Norden oben, Osten rechts -> svg = (x, y).
    conf: h = Raum + Lage aus Fotos klar, m = Lage abgeleitet, l = Platzhalter/unklar. */
 const W = 6.6, D = 10.6;
-const STAIR = { cx: 1.7, cy: 3.9, r: 0.9 };
+const STAIR = { cx: 1.35, cy: 3.9, r: 1.0 };
 const P = (x, y) => [x, y];
 const rect = (x1, y1, x2, y2) => [[x1,y1],[x2,y1],[x2,y2],[x1,y2]];
 
@@ -136,21 +136,20 @@ OG: { title: 'Obergeschoss',
 },
 DG: { title: 'Dachgeschoss',
   rooms: [
-    { id:'abst', name:'Ab-\nstell', cls:'f', pts:rect(0,1.9,0.8,5.3), label:[0.4,4.4], dim:'', conf:'h', fotos:'B1-4 (Tür), Skizze DG',
-      info:'Mini-Abstellraum mit Dachschräge, schmaler Streifen westlich vom Treppenloch (laut Skizze). Tür am Nordende, gegenüber der Studiotür.' },
-    { id:'podest', name:'Podest', cls:'f', pts:rect(0.8,1.9,3.4,5.3), label:[2.95,4.6], dim:'', conf:'h', fotos:'B1-4, B1-5, B1-6, Skizze DG',
-      info:'Treppenkopf mit Geländer (Stäbe, schwarzer Handlauf), Linoleum beige. Nördlich vom Treppenloch: Tür nach Osten ins Studio, Tür nach Westen in den Abstellraum.' },
-    { id:'studio', name:'Studio', cls:'s', pts:[[0,0],[6.6,0],[6.6,10.6],[0,10.6],[0,5.3],[3.4,5.3],[3.4,1.9],[0,1.9]], label:[4.6,7.2], dim:'ganze DG-Fläche um das Podest', conf:'h', fotos:'B1-1, B1-2, B1-3, Skizze DG',
-      info:'Großer Raum über die volle DG-Fläche, umschließt Podest und Abstellraum (Nord, Ost, Süd). Holzverkleidung, Deckenbalken, Dachschrägen (an den Rändern niedriger). Ostgiebel: Schreibtisch mit Ultrawide und Neon-Wand. Großes Dachfenster, Kallax, Sessel, Esstisch. Nordost: Gym-Ecke, Kleiderschrank, kleines Dachfenster, abgeteilt mit weißem Vorhang.' }
+    { id:'abst', name:'Abstellraum', cls:'f', pts:rect(0,0,3.4,1.9), label:[1.7,1.0], dim:'mit Dachschräge', conf:'h', fotos:'B1-4 (Tür), Skizze DG',
+      info:'Abstellraum unter der Nordschräge, nördlich vom Podest. Tür in der Nordwand des Podests (Ostende), gegenüber der Studiotür.' },
+    { id:'podest', name:'Podest', cls:'f', pts:rect(0,1.9,3.4,5.3), label:[2.95,4.5], dim:'', conf:'h', fotos:'B1-4, B1-5, B1-6, Skizze DG',
+      info:'Treppenkopf mit Geländer (Stäbe, schwarzer Handlauf), Linoleum beige. Tür nach Norden in den Abstellraum, Tür nach Süden ins Studio.' },
+    { id:'studio', name:'Studio', cls:'s', pts:[[3.4,0],[6.6,0],[6.6,10.6],[0,10.6],[0,5.3],[3.4,5.3]], label:[4.6,7.2], dim:'Ost- und Südteil des DG', conf:'h', fotos:'B1-1, B1-2, B1-3, Skizze DG',
+      info:'Großer Raum östlich und südlich vom Podest. Holzverkleidung, Deckenbalken, Dachschrägen (an den Rändern niedriger). Ostgiebel: Schreibtisch mit Ultrawide und Neon-Wand. Großes Dachfenster, Kallax, Sessel, Esstisch. Nordost: Gym-Ecke, Kleiderschrank, kleines Dachfenster. Tür vom Podest in dessen Südwand.' }
   ],
-  doors: [ { x:3.4,y:2.0,w:0.8,o:'v',t:'door',sw:1,hinge:'a' }, { x:0.8,y:2.0,w:0.7,o:'v',t:'door',sw:-1,hinge:'a' } ],
+  doors: [ { x:2.5,y:1.9,w:0.85,o:'h',t:'door',sw:1,hinge:'b' }, { x:2.3,y:5.3,w:0.9,o:'h',t:'door',sw:1,hinge:'a' } ],
   wins: [],
   stairs: [ { ...STAIR, kind:'open', label:'Treppenloch' } ],
   furn: [ [6.0,4.0,0.6,2.2,'Desk'], [3.8,6.2,1.2,0.9,'Tisch'], [1.0,9.6,3.0,0.4,'Kallax'], [5.0,0.45,1.2,0.6,'Gym'], [4.0,0.05,0.5,1.0,'Schrank'] ],
   extra: [
     { t:'sky', x:3.6, y:8.4, w:1.2, h:0.6, n:'Dachfenster' },
-    { t:'sky', x:5.0, y:0.1, w:0.6, h:0.3, n:'' },
-    { t:'line', a:[4.6,0], b:[4.6,2.6], n:'Vorhang' }
+    { t:'sky', x:5.0, y:0.1, w:0.6, h:0.3, n:'' }
   ]
 },
 SCHNITT: { title: 'Schnitt Treppe' }

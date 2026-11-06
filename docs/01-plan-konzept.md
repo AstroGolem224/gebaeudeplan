@@ -9,7 +9,7 @@ Ziel: Schemaplan (Gebäudeplan) für Rosenstraße 27, Köfering. Kein vermessene
 - `y = 0` Nordseite (Haustür), `y` wächst nach Süden (Garten/Balkon → Vorgarten → Straße).
 - Darstellung: Norden oben, Osten rechts. SVG-Koordinate = `(x, y)`.
 - Hülle für alle Geschosse: **6,6 × 10,6 m** (geschätzt).
-- Wendeltreppe: Mitte `(1,7 | 3,9)`, Radius 0,9 m. In allen Geschossen gleich, daran hängt die Lage aller Räume.
+- Wendeltreppe: Mitte `(1,35 | 3,9)`, Radius 1,0 m. In allen Geschossen gleich, daran hängt die Lage aller Räume.
 
 ### Task 1.2: Sicherheitsstufen
 | Stufe | Bedeutung | Darstellung |

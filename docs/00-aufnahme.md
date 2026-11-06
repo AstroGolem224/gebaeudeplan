@@ -36,9 +36,9 @@ Objekt: **Rosenstraße 27, Köfering**, Doppelhaushälfte. Grundlage: **Handskiz
 |---|---|
 | EG | Gäste-WC größer (NW-Ecke), Eingangsflur schmal (ca. 1,2 m), Küche kürzer (NO, ca. 3,1 × 3,3 m), Küchentür in der Südwand, keine Tür Diele–Küche, Diele mit Ausbuchtung nach Osten, Treppe weiter nördlich |
 | OG | Bad über die ganze Nordwest-Breite bis zum Flur; Raum 2 (Nordost) reicht bis zum Schlafzimmer, keine unbekannte Fläche mehr; Tür Raum 2 in der Westwand; „Wäschezimmer“ heißt **Kleiderzimmer**; Schrank-Nische an der Westwand südlich der Treppe |
-| DG | Studio über die volle Fläche um das Podest; Podest mit Treppenloch; Mini-Abstellraum als Streifen westlich vom Treppenloch |
+| DG | Abstellraum nördlich vom Podest; Studio im Ost- und Südteil; Türen Podest Nord/Süd |
 
-Nachtrag (Bestätigung Eigentümer): Die DG-Skizze stimmt so. Der Mini-Abstellraum ist ein schmaler Streifen westlich vom Treppenloch. Das Studio geht über die volle DG-Fläche um Podest und Abstellraum herum. Damit das in allen Geschossen passt, steht die Treppe ca. 0,8 m von der Westwand entfernt (Mitte `x 1,7`).
+Nachtrag 2 (Korrektur Eigentümer am Plan, 06.11.): Der **Abstellraum** liegt **nördlich vom Podest** (unter der Nordschräge), Ostwand in Flucht mit der Podest-Ostwand. Kein Streifen westlich der Treppe. Türen: Podest → Abstellraum in der Nordwand (Ostende), Podest → Studio in der Südwand. Kein Vorhang. Das Studio belegt den Rest (Ost + Süd). Treppenmitte damit wieder näher an der Westwand (`x 1,35`).
 
 ## Phase 3: Räume je Geschoss
 
@@ -63,9 +63,9 @@ Nachtrag (Bestätigung Eigentümer): Die DG-Skizze stimmt so. Der Mini-Abstellra
 - **Schlafzimmer:** Südost, Tür West, Balkon Süd.
 
 ### Task 3.4: DG
-- **Podest** mit Treppenloch, Tür Ost ins Studio, Tür West in den Mini-Abstellraum.
-- **Mini-Abstellraum:** schmaler Streifen mit Dachschräge westlich vom Treppenloch.
-- **Studio:** volle DG-Fläche um das Podest. Desk + Neon am Ostgiebel, Dachfenster Süd und Nord, Gym-Ecke hinter dem Vorhang.
+- **Podest** mit Treppenloch, Tür Nord in den Abstellraum, Tür Süd ins Studio.
+- **Abstellraum:** nördlich vom Podest unter der Nordschräge.
+- **Studio:** Ost- und Südteil des DG. Desk + Neon am Ostgiebel, Dachfenster Süd und Nord, Gym-Ecke im Nordosten.
 
 ## Phase 4: Offene Fragen
 1. Liegt das Nachbarhaus wirklich im **Westen**?
