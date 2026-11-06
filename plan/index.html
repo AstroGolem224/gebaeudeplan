@@ -60,7 +60,7 @@ aside .meta{color:var(--mute);font-size:12px}
    Darstellung: Norden oben, Osten rechts -> svg = (x, y).
    conf: h = Raum + Lage aus Fotos klar, m = Lage abgeleitet, l = Platzhalter/unklar. */
 const W = 6.6, D = 10.6;
-const STAIR = { cx: 1.15, cy: 3.9, r: 1.0 };
+const STAIR = { cx: 1.7, cy: 3.9, r: 0.9 };
 const P = (x, y) => [x, y];
 const rect = (x1, y1, x2, y2) => [[x1,y1],[x2,y1],[x2,y2],[x1,y2]];
 
@@ -84,7 +84,7 @@ EG: { title: 'Erdgeschoss',
       info:'Schmaler Eingangsflur hinter der Haustür (Norden). Westlich das Gäste-WC, Schuhablage an der Ostwand, nach Süden die Glastür zur Diele.' },
     { id:'nische', name:'Garderobe', cls:'f', pts:rect(0,1.95,2.25,2.8), label:[1.12,2.43], dim:'', conf:'m', fotos:'B2-2, B2-8',
       info:'Schmale Zone zwischen Gäste-WC und Treppe, mit Holzlamellen abgeteilt: Jacken, Hutablage, Kommode, Getränkekisten.' },
-    { id:'diele', name:'Diele', cls:'f', pts:[[2.25,1.95],[3.5,1.95],[3.5,3.3],[4.2,3.3],[4.2,5.0],[0,5.0],[0,2.8],[2.25,2.8]], label:[3.2,3.85], dim:'ca. 4,2 × 3,0 m', conf:'h', fotos:'B2-1, B2-2, B2-8, B2-11, Skizze EG',
+    { id:'diele', name:'Diele', cls:'f', pts:[[2.25,1.95],[3.5,1.95],[3.5,3.3],[4.2,3.3],[4.2,5.0],[0,5.0],[0,2.8],[2.25,2.8]], label:[3.35,4.55], dim:'ca. 4,2 × 3,0 m', conf:'h', fotos:'B2-1, B2-2, B2-8, B2-11, Skizze EG',
       info:'Achse Haustür – Flur – Diele – Wohnzimmer. Wendeltreppe an der Westwand (hoch ins OG, runter ins UG), Kiefern-Garderobenschrank an der Ostwand. Glastür zum Flur, Tür zum Wohnzimmer.' },
     { id:'kueche', name:'Küche', cls:'k', pts:rect(3.5,0,6.6,3.3), label:[5.05,1.55], dim:'ca. 3,1 × 3,3 m', conf:'h', fotos:'B2-6, B2-7, Skizze EG',
       info:'Nordost-Ecke. Fenster nach Norden mit grünen Vorhängen. Zeile Ost (Spüle, Kochfeld, Backofen, Kühlschrank), Arbeitsfläche West, Rollwagen-Insel. Tür in der Südwand zum Essbereich.' },
@@ -94,7 +94,7 @@ EG: { title: 'Erdgeschoss',
   doors: [
     { x:2.4,y:0,w:0.95,o:'h',t:'entry',sw:1,hinge:'b' },
     { x:2.5,y:1.95,w:0.9,o:'h',t:'door',sw:1,hinge:'b' },
-    { x:2.3,y:5.0,w:0.9,o:'h',t:'door',sw:1,hinge:'a' },
+    { x:2.65,y:5.0,w:0.9,o:'h',t:'door',sw:1,hinge:'a' },
     { x:2.25,y:0.6,w:0.75,o:'v',t:'door',sw:-1,hinge:'b' },
     { x:4.7,y:3.3,w:0.8,o:'h',t:'door',sw:1,hinge:'a' },
     { x:2.25,y:2.0,w:0.75,o:'v',t:'open' }
@@ -136,21 +136,19 @@ OG: { title: 'Obergeschoss',
 },
 DG: { title: 'Dachgeschoss',
   rooms: [
-    { id:'abst', name:'Abstell', cls:'f', pts:rect(0,1.9,1.2,2.85), label:[0.6,2.42], dim:'', conf:'m', fotos:'B1-4 (Tür), Skizze DG',
-      info:'Mini-Abstellraum mit Dachschräge. In der Skizze westlich vom Treppenloch. Weil die Treppe in EG und OG an der Westwand steht, ist er hier nordwestlich vom Loch gezeichnet. Tür gegenüber der Studiotür.' },
-    { id:'podest', name:'Podest', cls:'f', pts:[[1.2,1.9],[3.4,1.9],[3.4,5.3],[0,5.3],[0,2.85],[1.2,2.85]], label:[2.8,4.3], dim:'', conf:'h', fotos:'B1-4, B1-5, B1-6, Skizze DG',
+    { id:'abst', name:'Ab-\nstell', cls:'f', pts:rect(0,1.9,0.8,5.3), label:[0.4,4.4], dim:'', conf:'h', fotos:'B1-4 (Tür), Skizze DG',
+      info:'Mini-Abstellraum mit Dachschräge, schmaler Streifen westlich vom Treppenloch (laut Skizze). Tür am Nordende, gegenüber der Studiotür.' },
+    { id:'podest', name:'Podest', cls:'f', pts:rect(0.8,1.9,3.4,5.3), label:[2.95,4.6], dim:'', conf:'h', fotos:'B1-4, B1-5, B1-6, Skizze DG',
       info:'Treppenkopf mit Geländer (Stäbe, schwarzer Handlauf), Linoleum beige. Nördlich vom Treppenloch: Tür nach Osten ins Studio, Tür nach Westen in den Abstellraum.' },
-    { id:'studio', name:'Studio', cls:'s', pts:[[0,0],[6.6,0],[6.6,5.3],[3.4,5.3],[3.4,1.9],[0,1.9]], label:[5.0,3.1], dim:'ca. 6,6 × 5,3 m (L-Form)', conf:'h', fotos:'B1-1, B1-2, B1-3, Skizze DG',
-      info:'L-förmig um das Podest (Nord und Ost). Holzverkleidung, Deckenbalken, Dachschrägen. Ostgiebel: Schreibtisch mit Ultrawide und Neon-Wand. Südseite: großes Dachfenster, Kallax, Sessel. Nordost: Gym-Ecke, Kleiderschrank, kleines Dachfenster, abgeteilt mit weißem Vorhang. Westlich: Esstisch, Kommode, Tür zum Podest.' },
-    { id:'schrS', name:'Dachschräge Süd', cls:'u', pts:rect(0,5.3,6.6,10.6), label:[3.3,7.9], dim:'laut Skizze kein Raum', conf:'l', fotos:'–',
-      info:'In der Skizze endet das DG südlich vom Treppenloch. Bereich unter der Südschräge, nicht als Raum genutzt.' }
+    { id:'studio', name:'Studio', cls:'s', pts:[[0,0],[6.6,0],[6.6,10.6],[0,10.6],[0,5.3],[3.4,5.3],[3.4,1.9],[0,1.9]], label:[4.6,7.2], dim:'ganze DG-Fläche um das Podest', conf:'h', fotos:'B1-1, B1-2, B1-3, Skizze DG',
+      info:'Großer Raum über die volle DG-Fläche, umschließt Podest und Abstellraum (Nord, Ost, Süd). Holzverkleidung, Deckenbalken, Dachschrägen (an den Rändern niedriger). Ostgiebel: Schreibtisch mit Ultrawide und Neon-Wand. Großes Dachfenster, Kallax, Sessel, Esstisch. Nordost: Gym-Ecke, Kleiderschrank, kleines Dachfenster, abgeteilt mit weißem Vorhang.' }
   ],
-  doors: [ { x:3.4,y:2.0,w:0.8,o:'v',t:'door',sw:1,hinge:'a' }, { x:1.2,y:1.95,w:0.8,o:'v',t:'door',sw:-1,hinge:'a' } ],
+  doors: [ { x:3.4,y:2.0,w:0.8,o:'v',t:'door',sw:1,hinge:'a' }, { x:0.8,y:2.0,w:0.7,o:'v',t:'door',sw:-1,hinge:'a' } ],
   wins: [],
   stairs: [ { ...STAIR, kind:'open', label:'Treppenloch' } ],
-  furn: [ [6.0,1.5,0.6,2.2,'Desk'], [3.6,3.0,0.9,1.3,'Tisch'], [3.7,4.85,2.6,0.4,'Kallax'], [5.0,0.45,1.2,0.6,'Gym'], [4.0,0.05,0.5,1.0,'Schrank'] ],
+  furn: [ [6.0,4.0,0.6,2.2,'Desk'], [3.8,6.2,1.2,0.9,'Tisch'], [1.0,9.6,3.0,0.4,'Kallax'], [5.0,0.45,1.2,0.6,'Gym'], [4.0,0.05,0.5,1.0,'Schrank'] ],
   extra: [
-    { t:'sky', x:4.1, y:4.55, w:1.2, h:0.6, n:'Dachfenster' },
+    { t:'sky', x:3.6, y:8.4, w:1.2, h:0.6, n:'Dachfenster' },
     { t:'sky', x:5.0, y:0.1, w:0.6, h:0.3, n:'' },
     { t:'line', a:[4.6,0], b:[4.6,2.6], n:'Vorhang' }
   ]
@@ -204,7 +202,7 @@ function drawStair(s,g){
   el('circle',{cx:s.cx,cy:s.cy,r:s.r,fill:open?'#0b1016':'#3b342a',stroke:'#c9a56a','stroke-width':.05,'stroke-dasharray':open?'.15 .1':'0'},g);
   for(let i=0;i<14;i++){const a=i/14*Math.PI*2;el('line',{x1:s.cx,y1:s.cy,x2:s.cx+s.r*Math.cos(a),y2:s.cy+s.r*Math.sin(a),stroke:'#c9a56a','stroke-width':.025,opacity:open?.35:.8},g);}
   el('circle',{cx:s.cx,cy:s.cy,r:.11,fill:'#e8d4a8'},g);
-  txt(g,s.cx,s.cy+s.r+.24,s.label,'rdim');
+  if(s.kind==='open')txt(g,s.cx,s.cy+s.r+.24,s.label,'rdim'); else txt(g,s.cx+s.r+.08,s.cy+.06,s.label,'rdim','start');
 }
 function draw(){
   tabs(); svg.innerHTML=''; panel.innerHTML='';
@@ -261,7 +259,7 @@ function draw(){
 }
 function legend(){return `<div class="legend"><div><span class="chip c-h">sicher</span> Raum und Lage aus Fotos klar</div><div><span class="chip c-m">abgeleitet</span> Lage aus Blickrichtungen erschlossen</div><div><span class="chip c-l">unklar</span> Platzhalter (schraffiert/gestrichelt)</div><div>Türen: Viertelkreis = Aufschlag · orange gestrichelt = Tür vermutet · gestrichelt = Öffnung ohne Blatt · blau = Haustür</div><div>Fenster blau · Terrassen-/Balkontür dicker · Dachfenster gestrichelt</div><div>Orange Linie West: Trennwand zur Nachbar-DHH (angenommen)</div><div>Fotos: B1-n = erster Batch (DG/OG), B2-n = zweiter Batch (EG)</div></div>`;}
 function showIntro(){
-  panel.innerHTML=`<h2>Treppe & Geschosse</h2><p>Eine Wendeltreppe (Holzstufen, Putz-Mittelsäule, schwarzer Handlauf) verbindet UG – EG – OG – DG. Sie liegt an der Westwand, im nördlichen Drittel der Haustiefe.</p><p class="meta">Höhen und Stufenzahl geschätzt (Geschosshöhe ca. 2,7 m). Schnitt nur zur Orientierung.</p>`+legend();
+  panel.innerHTML=`<h2>Treppe & Geschosse</h2><p>Eine Wendeltreppe (Holzstufen, Putz-Mittelsäule, schwarzer Handlauf) verbindet UG – EG – OG – DG. Sie liegt nahe der Westwand, im nördlichen Drittel der Haustiefe.</p><p class="meta">Höhen und Stufenzahl geschätzt (Geschosshöhe ca. 2,7 m). Schnitt nur zur Orientierung.</p>`+legend();
 }
 function showPanel(L){
   const r=L.rooms.find(x=>x.id===selected);
