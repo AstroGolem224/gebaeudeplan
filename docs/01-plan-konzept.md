@@ -25,8 +25,8 @@ Vermutete Türen sind orange gestrichelt.
 2. Gemeinsame Merkmale zwischen Fotos verknüpfen (Bilder, Leuchten, Türblätter, Kleidung am Geländer).
 3. Spiegelungen in Fenstern und Spiegeln für verdeckte Wände nutzen.
 4. Ausrichtung mit den Angaben (Balkon Süd, Zimmer 2 Nord, Haustür Nord) festnageln.
-6. Ab v3: Handskizzen des Eigentümers sind Primärquelle für die Raumaufteilung, Fotos liefern Details.
 5. Geschosse über Treppe und Leitungen (Bad über Gäste-WC) übereinanderlegen.
+6. Ab v3: Handskizzen des Eigentümers sind Primärquelle für die Raumaufteilung, Fotos liefern Details.
 
 ## Phase 2: Umsetzung
 - [x] 2.1 Fotos sichten (2 Batches, 31 Fotos)
